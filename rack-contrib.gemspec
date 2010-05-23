@@ -77,7 +77,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = %w[README.rdoc COPYING]
   s.add_dependency 'rack', '>= 0.9.1'
   s.add_development_dependency 'test-spec', '~> 0.9.0'
-  s.add_development_dependency 'tmail', '>= 1.2'
+  s.add_development_dependency 'mail', '>= 2.2.1'
   s.add_development_dependency 'json', '>= 1.1'
 
   s.has_rdoc = true

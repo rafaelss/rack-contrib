@@ -1,5 +1,5 @@
 require 'net/smtp'
-require 'tmail'
+require 'mail'
 require 'erb'
 
 module Rack
@@ -53,14 +53,13 @@ module Rack
 
   private
     def generate_mail(exception, env)
-      mail = TMail::Mail.new
-      mail.to = Array(config[:to])
-      mail.from = config[:from]
-      mail.subject = config[:subject] % [exception.to_s]
-      mail.date = Time.now
-      mail.set_content_type 'text/plain'
-      mail.charset = 'UTF-8'
-      mail.body = @template.result(binding)
+      mail = Mail.new
+      mail.to(Array(config[:to]))
+      mail.from(config[:from])
+      mail.subject(config[:subject] % [exception.to_s])
+      mail.body(@template.result(binding))
+      mail.date(Time.now)
+      mail.content_type('text/plain; charset=UTF-8')
       mail
     end
 
